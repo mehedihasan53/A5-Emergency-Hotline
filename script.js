@@ -83,16 +83,34 @@ clearHistoryBtn.addEventListener("click", function () {
 });
 
 
-// Copy Buttons
-const copyBtns = document.getElementsByClassName("card-copy");
+// call history update
+function updateCallHistoryUI() {
+    callHistoryList.innerHTML = "";
 
-for (const btn of copyBtns) {
-    btn.addEventListener("click", function () {
-        const card = btn.closest(".card");
-        const number = card.getElementsByTagName("h1")[1].innerText;
-        navigator.clipboard.writeText(number);
-        counters.copy++;
-        navbarCopy.innerText = counters.copy;
-    });
+    if (callHistoryData.length === 0) {
+        callHistoryList.innerHTML = `
+            <div class="text-center text-gray-500 py-8">
+              <i class="fa-regular fa-clock text-4xl mb-4"></i>
+              <p>No call history yet</p>
+            </div>
+          `;
+        return;
+    }
+
+    for (const call of callHistoryData) {
+        const historyItem = document.createElement("div");
+        historyItem.className = "call-history-list flex justify-between items-center p-4 mb-3 rounded-lg bg-[#FAFAFA]";
+        historyItem.innerHTML = `
+            <div class="service-history">
+              <h1 class="font-semibold text-sm">${call.serviceName}</h1>
+              <p class="text-[#5C5C5C]">${call.serviceNumber}</p>
+            </div>
+            <div class="date-time text-sm text-[#5C5C5C]">${call.time}</div>
+          `;
+        callHistoryList.appendChild(historyItem);
+    }
 }
+
+// copy buttons
+
 
