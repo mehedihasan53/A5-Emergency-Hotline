@@ -1,30 +1,28 @@
 const counters = {
     heart: 0,
     coin: 100,
-    copy: 0
+    copy: 0,
 };
 
 // Navbar elements
 
-const navbarHeart = document.getElementById("navbar-heart")
-const navbarCoin = document.getElementById("navbar-coin")
-const navbarCopy = document.getElementById("navbar-copy")
-const clearHistoryBtn = document.getElementById("clear-history")
+const navbarHeart = document.getElementById("navbar-heart");
+const navbarCoin = document.getElementById("navbar-coin");
+const navbarCopy = document.getElementById("navbar-copy");
+const clearHistoryBtn = document.getElementById("clear-history");
 
 const callHistoryList = document.getElementById("calls-history-items");
-
 
 let callHistoryData = [];
 
 // Heart Buttons
 
-
-const hearts = document.getElementsByClassName("card-heart")
+const hearts = document.getElementsByClassName("card-heart");
 for (const heart of hearts) {
     heart.addEventListener("click", function () {
-        counters.heart++
-        navbarHeart.innerHTML = counters.heart
-    })
+        counters.heart++;
+        navbarHeart.innerHTML = counters.heart;
+    });
 }
 
 // Call Buttons
@@ -32,16 +30,13 @@ for (const heart of hearts) {
 const callBtns = document.getElementsByClassName("card-call");
 for (const callBtn of callBtns) {
     callBtn.addEventListener("click", function () {
-        const card = callBtn.closest(".card")
-        const serviceName = card
-            .getElementsByTagName("h1")[0].innerText;
+        const card = callBtn.closest(".card");
+        const serviceName = card.getElementsByTagName("h1")[0].innerText;
 
-        const serviceNumber = card
-            .getElementsByTagName("h1")[1].innerText;
-
+        const serviceNumber = card.getElementsByTagName("h1")[1].innerText;
 
         if (counters.coin < 20) {
-            alert("You don't have enough coins")
+            alert("You don't have enough coins");
             return;
         }
         alert("Calling " + serviceName + "(" + serviceNumber + ")");
@@ -50,15 +45,15 @@ for (const callBtn of callBtns) {
         counters.coin = counters.coin - 20;
         document.getElementById("navbar-coin").innerText = counters.coin;
 
-        // ✅ 
+        // ✅
 
         // Call History Time
         const time = new Date();
         const hours = time.getHours();
         const minutes = time.getMinutes();
-        const ampm = hours >= 12 ? 'PM' : 'AM';
+        const ampm = hours >= 12 ? "PM" : "AM";
         const formattedHours = hours % 12 || 12;
-        const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+        const formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
         const timeString = `${formattedHours}:${formattedMinutes} ${ampm}`;
 
         //  create call history oject
@@ -66,7 +61,7 @@ for (const callBtn of callBtns) {
         const callObj = {
             serviceName,
             serviceNumber,
-            time: timeString
+            time: timeString,
         };
 
         callHistoryData.push(callObj);
@@ -82,7 +77,6 @@ clearHistoryBtn.addEventListener("click", function () {
     updateCallHistoryUI();
 });
 
-
 // call history update
 function updateCallHistoryUI() {
     callHistoryList.innerHTML = "";
@@ -97,7 +91,8 @@ function updateCallHistoryUI() {
 
     for (const call of callHistoryData) {
         const historyItem = document.createElement("div");
-        historyItem.className = "call-history-list flex justify-between items-center p-4 mb-3 rounded-lg bg-[#FAFAFA]";
+        historyItem.className =
+            "call-history-list flex justify-between items-center p-4 mb-3 rounded-lg bg-[#FAFAFA]";
         historyItem.innerHTML = `
             <div class="service-history">
               <h1 class="font-semibold text-sm">${call.serviceName}</h1>
@@ -118,28 +113,29 @@ for (const btn of copyBtns) {
         const card = btn.closest(".card");
         const number = card.getElementsByTagName("h1")[1].innerText;
 
-        navigator.clipboard.writeText(number).then(() => {
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-            btn.style.backgroundColor = '#00A63E';
-            btn.style.color = 'white';
+        navigator.clipboard
+            .writeText(number)
+            .then(() => {
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+                btn.style.backgroundColor = "#00A63E";
+                btn.style.color = "white";
 
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.style.backgroundColor = '';
-                btn.style.color = '';
-            }, 500);
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.backgroundColor = "";
+                    btn.style.color = "";
+                }, 500);
 
-            // Update counter
-            counters.copy++;
-            navbarCopy.innerText = counters.copy;
-        }).catch(err => {
-            console.error('Failed to copy text: ', err);
-            alert('Failed to copy number to clipboard.')
-        });
-
+                // Update counter
+                counters.copy++;
+                navbarCopy.innerText = counters.copy;
+            })
+            .catch((err) => {
+                console.error("Failed to copy text: ", err);
+                alert("Failed to copy number to clipboard.");
+            });
     });
 }
 
 updateCallHistoryUI();
-
