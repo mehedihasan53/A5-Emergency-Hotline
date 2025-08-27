@@ -90,8 +90,6 @@ function updateCallHistoryUI() {
     if (callHistoryData.length === 0) {
         callHistoryList.innerHTML = `
             <div class="text-center text-gray-500 py-8">
-              <i class="fa-regular fa-clock text-4xl mb-4"></i>
-              <p>No call history yet</p>
             </div>
           `;
         return;
@@ -113,4 +111,35 @@ function updateCallHistoryUI() {
 
 // copy buttons
 
+const copyBtns = document.getElementsByClassName("card-copy");
+
+for (const btn of copyBtns) {
+    btn.addEventListener("click", function () {
+        const card = btn.closest(".card");
+        const number = card.getElementsByTagName("h1")[1].innerText;
+
+        navigator.clipboard.writeText(number).then(() => {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+            btn.style.backgroundColor = '#00A63E';
+            btn.style.color = 'white';
+
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.backgroundColor = '';
+                btn.style.color = '';
+            }, 500);
+
+            // Update counter
+            counters.copy++;
+            navbarCopy.innerText = counters.copy;
+        }).catch(err => {
+            console.error('Failed to copy text: ', err);
+            alert('Failed to copy number to clipboard.')
+        });
+
+    });
+}
+
+updateCallHistoryUI();
 
