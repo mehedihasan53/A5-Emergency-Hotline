@@ -23,6 +23,29 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <style>
+      /* Adding Hind font */
+      @import url("https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap");
+      .hind-font {
+        font-family: "Hind", sans-serif;
+      }
+
+      /* Custom styles for better mobile responsiveness */
+      @media (max-width: 768px) {
+        .card {
+          width: 100% !important;
+          max-width: 436px;
+        }
+
+        .call-history {
+          width: 100% !important;
+        }
+
+        #calls-history-items .call-history-list {
+          width: 100% !important;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -80,7 +103,7 @@
 
     <!-- main section  -->
     <main
-      class="flex flex-col md:flex-row justify-between gap-2.5 max-w-[1920px] mx-auto bg-[#F5FFF6]"
+      class="flex flex-col md:flex-row justify-between gap-2.5 max-w-[1920px] mx-auto bg-[#F5FFF6] px-4"
     >
       <!-- card section -->
       <div
@@ -106,9 +129,9 @@
           >
             All
           </p>
-          <div class="card-btn mt-6">
+          <div class="card-btn mt-6 flex gap-2">
             <button
-              class="btn bg-white text-black w-44 h-10 rounded-[12px] border-[#D4D6D5] card-copy"
+              class="btn bg-white text-black w-44 h-10 rounded-[12px] border-[#D4D6D5] card-copy border"
             >
               <i class="fa-regular fa-copy"></i>
               Copy
@@ -141,9 +164,9 @@
           >
             Police
           </p>
-          <div class="card-btn mt-6">
+          <div class="card-btn mt-6 flex gap-2">
             <button
-              class="btn bg-white text-black w-44 h-10 rounded-[12px] border-[#D4D6D5] card-copy"
+              class="btn bg-white text-black w-44 h-10 rounded-[12px] border-[#D4D6D5] card-copy border"
             >
               <i class="fa-regular fa-copy"></i>
               Copy
@@ -176,9 +199,9 @@
           >
             Fire
           </p>
-          <div class="card-btn mt-6">
+          <div class="card-btn mt-6 flex gap-2">
             <button
-              class="btn bg-white text-black w-44 h-10 rounded-[12px] border-[#D4D6D5] card-copy"
+              class="btn bg-white text-black w-44 h-10 rounded-[12px] border-[#D4D6D5] card-copy border"
             >
               <i class="fa-regular fa-copy"></i>
               Copy
@@ -211,9 +234,9 @@
           >
             Health
           </p>
-          <div class="card-btn mt-6">
+          <div class="card-btn mt-6 flex gap-2">
             <button
-              class="btn bg-white text-black w-44 h-10 rounded-[12px] border-[#D4D6D5] card-copy"
+              class="btn bg-white text-black w-44 h-10 rounded-[12px] border-[#D4D6D5] card-copy border"
             >
               <i class="fa-regular fa-copy"></i>
               Copy
@@ -246,9 +269,9 @@
           >
             Help
           </p>
-          <div class="card-btn mt-6">
+          <div class="card-btn mt-6 flex gap-2">
             <button
-              class="btn bg-white text-black w-44 h-10 rounded-[12px] border-[#D4D6D5] card-copy"
+              class="btn bg-white text-black w-44 h-10 rounded-[12px] border-[#D4D6D5] card-copy border"
             >
               <i class="fa-regular fa-copy"></i>
               Copy
@@ -281,9 +304,9 @@
           >
             Govt
           </p>
-          <div class="card-btn mt-6">
+          <div class="card-btn mt-6 flex gap-2">
             <button
-              class="btn bg-white text-black w-44 h-10 rounded-[12px] border-[#D4D6D5] card-copy"
+              class="btn bg-white text-black w-44 h-10 rounded-[12px] border-[#D4D6D5] card-copy border"
             >
               <i class="fa-regular fa-copy"></i>
               Copy
@@ -316,9 +339,9 @@
           >
             Electricity
           </p>
-          <div class="card-btn mt-6">
+          <div class="card-btn mt-6 flex gap-2">
             <button
-              class="btn bg-white text-black w-44 h-10 rounded-[12px] border-[#D4D6D5] card-copy"
+              class="btn bg-white text-black w-44 h-10 rounded-[12px] border-[#D4D6D5] card-copy border"
             >
               <i class="fa-regular fa-copy"></i>
               Copy
@@ -351,9 +374,9 @@
           >
             NGO
           </p>
-          <div class="card-btn mt-6">
+          <div class="card-btn mt-6 flex gap-2">
             <button
-              class="btn bg-white text-black w-44 h-10 rounded-[12px] border-[#D4D6D5] card-copy"
+              class="btn bg-white text-black w-44 h-10 rounded-[12px] border-[#D4D6D5] card-copy border"
             >
               <i class="fa-regular fa-copy"></i>
               Copy
@@ -385,9 +408,9 @@
           >
             Travel
           </p>
-          <div class="card-btn mt-6">
+          <div class="card-btn mt-6 flex gap-2">
             <button
-              class="btn bg-white text-black w-44 h-10 rounded-[12px] border-[#D4D6D5] card-copy"
+              class="btn bg-white text-black w-44 h-10 rounded-[12px] border-[#D4D6D5] card-copy border"
             >
               <i class="fa-regular fa-copy"></i>
               Copy
@@ -429,6 +452,161 @@
         </div>
       </div>
     </main>
-    <script src="script.js"></script>
+
+    <script>
+      // Initialize counters
+      const counters = {
+        heart: 0,
+        coin: 100,
+        copy: 0,
+      };
+
+      // Navbar elements
+      const navbarHeart = document.getElementById("navbar-heart");
+      const navbarCoin = document.getElementById("navbar-coin");
+      const navbarCopy = document.getElementById("navbar-copy");
+      const clearHistoryBtn = document.getElementById("clear-history");
+      const callHistoryList = document.getElementById("calls-history-items");
+
+      // Use let instead of const for callHistoryData so we can reassign it
+      let callHistoryData = [];
+
+      // Heart Buttons
+      const hearts = document.getElementsByClassName("card-heart");
+      for (const heart of hearts) {
+        heart.addEventListener("click", function () {
+          // Toggle heart icon between outline and solid
+          if (heart.classList.contains("fa-regular")) {
+            heart.classList.remove("fa-regular");
+            heart.classList.add("fa-solid");
+            heart.style.color = "red";
+            counters.heart++;
+          } else {
+            heart.classList.remove("fa-solid");
+            heart.classList.add("fa-regular");
+            heart.style.color = "";
+            counters.heart--;
+          }
+          navbarHeart.innerHTML = counters.heart;
+        });
+      }
+
+      // Call Buttons
+      const callBtns = document.getElementsByClassName("card-call");
+      for (const callBtn of callBtns) {
+        callBtn.addEventListener("click", function () {
+          const card = callBtn.closest(".card");
+          const serviceName = card.getElementsByTagName("h1")[0].innerText;
+          const serviceNumber = card.getElementsByTagName("h1")[1].innerText;
+
+          if (counters.coin < 20) {
+            alert("You don't have enough coins to make a call");
+            return;
+          }
+
+          // Show calling alert
+          alert("Calling " + serviceName + " (" + serviceNumber + ")");
+
+          // Update coin counter
+          counters.coin -= 20;
+          navbarCoin.innerText = counters.coin;
+
+          // Get current time
+          const time = new Date();
+          const hours = time.getHours();
+          const minutes = time.getMinutes();
+          const ampm = hours >= 12 ? "PM" : "AM";
+          const formattedHours = hours % 12 || 12;
+          const formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
+          const timeString = `${formattedHours}:${formattedMinutes} ${ampm}`;
+
+          // Create call history object
+          const callObj = {
+            serviceName,
+            serviceNumber,
+            time: timeString,
+          };
+
+          // Add to history array
+          callHistoryData.push(callObj);
+
+          // Update call history UI
+          updateCallHistoryUI();
+        });
+      }
+
+      // Clear History Button
+      clearHistoryBtn.addEventListener("click", function () {
+        callHistoryData = [];
+        updateCallHistoryUI();
+      });
+
+      // Function to update call history UI
+      function updateCallHistoryUI() {
+        callHistoryList.innerHTML = "";
+
+        if (callHistoryData.length === 0) {
+          callHistoryList.innerHTML = `
+            <div class="text-center text-gray-500 py-8">
+              <i class="fa-regular fa-clock text-4xl mb-4"></i>
+              <p>No call history yet</p>
+            </div>
+          `;
+          return;
+        }
+
+        // Add each call to the history
+        for (const call of callHistoryData) {
+          const historyItem = document.createElement("div");
+          historyItem.className =
+            "call-history-list flex justify-between items-center p-4 mb-3 rounded-lg bg-[#FAFAFA]";
+          historyItem.innerHTML = `
+            <div class="service-history">
+              <h1 class="font-semibold text-sm">${call.serviceName}</h1>
+              <p class="text-[#5C5C5C]">${call.serviceNumber}</p>
+            </div>
+            <div class="date-time text-sm text-[#5C5C5C]">${call.time}</div>
+          `;
+          callHistoryList.appendChild(historyItem);
+        }
+      }
+
+      // Copy Buttons
+      const copyBtns = document.getElementsByClassName("card-copy");
+      for (const btn of copyBtns) {
+        btn.addEventListener("click", function () {
+          const card = btn.closest(".card");
+          const number = card.getElementsByTagName("h1")[1].innerText;
+
+          // Use the Clipboard API to copy text
+          navigator.clipboard
+            .writeText(number)
+            .then(() => {
+              // Show a brief visual feedback
+              const originalText = btn.innerHTML;
+              btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+              btn.style.backgroundColor = "#00A63E";
+              btn.style.color = "white";
+
+              setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.backgroundColor = "";
+                btn.style.color = "";
+              }, 1500);
+
+              // Update counter
+              counters.copy++;
+              navbarCopy.innerText = counters.copy;
+            })
+            .catch((err) => {
+              console.error("Failed to copy: ", err);
+              alert("Failed to copy number to clipboard");
+            });
+        });
+      }
+
+      // Initialize call history UI
+      updateCallHistoryUI();
+    </script>
   </body>
 </html>
